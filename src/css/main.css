@@ -1,13 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat&display=optional");
+
+@import url("https://fonts.googleapis.com/css2?family=Cinzel&display=optional");
+
 :root {
+  --transition: all 0.4s linear;
+  --spacing: 0.1rem;
+  --radius: 0.25rem;
+  --light-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
+  --light-shadow-reverse: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  --dark-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  --solid-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1), 9px 9px var(--white),
+    10px 10px var(--gold);
+  --max-width: 1170px;
+  --mobile: 900px;
+  /* COLORS*/
+  --grigio: #919191; /*145, 145, 145*/
+  --grigio-medio: #bdbdbd; /*145, 145, 145*/
+  --grigio-chiaro: #f8f8f8; /*248, 248, 248*/
+
+  --blue-chiarissimo: #f4f5fd; /*244, 245, 253*/
+  --blue-medio: #03a9f4; /*3, 169, 244*/
+  --blue-scuro: #323c4e; /*50, 60, 78*/
+
+  --gold-1: #c4a363; /*196, 163, 99*/
+  --gold-2: #a88b13;
+  --white: #ffffff;
+
+  /* CSS HEX */
+  --melon: #fec5bbff;
+  --pale-pink: #fcd5ceff;
+  --misty-rose: #fae1ddff;
+  --seashell: #f8edebff;
+  --platinum: #e8e8e4ff;
+  --platinum-2: #d8e2dcff;
+  --linen: #ece4dbff;
+  --unbleached-silk: #ffe5d9ff;
+  --peach-puff: #ffd7baff;
+  --peach-crayola: #fec89aff;
+
+  /* CSS HSL */
+  --melon: hsla(9, 97%, 86%, 1);
+  --pale-pink: hsla(9, 88%, 90%, 1);
+  --pale-pink-transparent: hsla(9, 88%, 90%, 0.6);
+  --misty-rose: hsla(8, 74%, 92%, 1);
+  --seashell: hsla(9, 48%, 95%, 1);
+  --platinum: hsla(60, 8%, 90%, 1);
+  --platinum-2: hsla(144, 15%, 87%, 1);
+  --linen: hsla(32, 31%, 89%, 1);
+  --unbleached-silk: hsla(19, 100%, 93%, 1);
+  --peach-puff: hsla(25, 100%, 86%, 1);
+  --peach-crayola: hsla(28, 98%, 80%, 1);
+
   --border-radius: 4px;
-  --color-text: #333;
-  --color-primary: #7026b9;
+  --color-text: var(--blue-scuro);
+  --color-primary: var(--melon);
   --color-code-bg: #fff4db;
   --color-code: #8a6534;
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
-    sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-  --font-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
-    "Courier New", monospace;
+  --font-family: "Caveat", cursive;
+  --font-mono: "Cinzel", serif;
+  --font-adjust: 1.5rem;
   --font-lg: 18px;
   --font-md: 16px;
   --font-sm: 14px;
@@ -25,11 +76,24 @@
   --size-gutter: var(--space-5);
   --size-gap: var(--space-6);
 }
+
+*,
+::after,
+::before {
+  outline: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* bordi per iniziare */
+  /* border: 1px solid rgb(169, 190, 197); */
+}
+::selection {
+  background-color: var(--pale-pink-transparent);
+}
 html {
   -webkit-text-size-adjust: 100%;
   box-sizing: border-box;
   font: sans-serif;
-  font-size: var(--font-md);
   line-height: var(--line-height-normal);
   overflow-y: scroll;
 }
@@ -37,11 +101,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   color: var(--color-text);
-  font-family: sans-serif;
-  font-family: var(--font-sans);
+  font-family: var(--font-family);
   font-weight: normal;
   margin: 0;
   word-wrap: break-word;
+  background-color: var(--seashell);
+}
+main {
+  min-height: 75vh;
 }
 a {
   background-color: transparent;
@@ -72,10 +139,8 @@ dfn {
 }
 h1 {
   margin: 0;
-  margin-bottom: 3rem;
   padding: 0;
-  line-height: var(--line-height-dense);
-  letter-spacing: -0.01em;
+  line-height: var(--line-height-loose);
 }
 h1 > b {
   color: var(--color-primary);
@@ -104,15 +169,7 @@ hr {
   border: none;
   height: 1px;
 }
-* {
-  box-sizing: inherit;
-}
-*:before {
-  box-sizing: inherit;
-}
-*:after {
-  box-sizing: inherit;
-}
+
 hgroup,
 img,
 figure,
@@ -221,4 +278,45 @@ pre code:after,
 pre tt:before,
 pre tt:after {
   content: none;
+}
+/* END DEFAULT */
+.layout {
+  margin: 0 auto;
+  max-width: var(--max-width);
+  padding: 0 var(--size-gutter);
+  display: grid;
+  grid: auto 1fr auto / 1fr;
+}
+.container {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.pic-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.moving {
+  animation: moving 1.3s steps(2, jump-none) infinite;
+}
+@keyframes moving {
+  from {
+    transform: rotate(-10deg);
+  }
+  to {
+    transform: rotate(10deg);
+  }
+}
+
+@media screen and (min-width: 900px) {
+  html {
+    font-size: var(--font-adjust);
+  }
+  .title {
+    font-size: 1.5rem;
+  }
 }
