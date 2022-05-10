@@ -31,7 +31,7 @@ const Layout = ({ children }) => {
             target="_blank"
             rel="noreferrer"
           >
-            Paolo & Mine© {new Date().getFullYear()}
+            deveb© {new Date().getFullYear()}
           </a>
         </footer>
       </div>

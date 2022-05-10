@@ -57,7 +57,7 @@
   --color-code-bg: #fff4db;
   --color-code: #8a6534;
   --font-family: "Caveat", cursive;
-  --font-mono: "Cinzel", serif;
+  --font-variant: "Cinzel", serif;
   --font-adjust: 1.5rem;
   --font-lg: 18px;
   --font-md: 16px;
@@ -84,8 +84,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* bordi per iniziare */
-  /* border: 1px solid rgb(169, 190, 197); */
 }
 ::selection {
   background-color: var(--pale-pink-transparent);
@@ -96,6 +94,7 @@ html {
   font: sans-serif;
   line-height: var(--line-height-normal);
   overflow-y: scroll;
+  background-color: var(--seashell);
 }
 body {
   -moz-osx-font-smoothing: grayscale;
@@ -105,7 +104,7 @@ body {
   font-weight: normal;
   margin: 0;
   word-wrap: break-word;
-  background-color: var(--seashell);
+  background: linear-gradient(var(--white), var(--seashell));
 }
 main {
   min-height: 75vh;
@@ -153,7 +152,7 @@ code,
 kbd,
 pre,
 samp {
-  font-family: var(--font-mono);
+  font-family: var(--font-variant);
   font-size: 1em;
   line-height: inherit;
 }
@@ -258,7 +257,7 @@ code {
   background-color: var(--color-code-bg);
   border-radius: var(--border-radius);
   color: var(--color-code);
-  font-family: var(--font-mono);
+  font-family: var(--font-variant);
   padding-bottom: 0.25em;
   padding-top: 0.25em;
   word-break: normal;
@@ -279,6 +278,10 @@ pre tt:before,
 pre tt:after {
   content: none;
 }
+.font-variant {
+  font-family: var(--font-variant);
+}
+
 /* END DEFAULT */
 .layout {
   margin: 0 auto;
@@ -298,8 +301,34 @@ pre tt:after {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  max-width: 80vw;
 }
 
+.appear {
+  animation: appear 1.2s ease-in 1 forwards;
+  animation-delay: var(--delay);
+  opacity: 0;
+}
+
+@keyframes appear {
+  to {
+    opacity: 1;
+  }
+}
+.jump {
+  animation: jump 0.4s ease-in 1 forwards;
+  animation-delay: var(--delay);
+  transform: translateY(100px);
+}
+
+@keyframes jump {
+  80% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
 .moving {
   animation: moving 1.3s steps(2, jump-none) infinite;
 }
@@ -312,11 +341,49 @@ pre tt:after {
   }
 }
 
+.date {
+  margin: 5rem 0 2rem 0;
+  font-size: 2rem;
+
+  color: var(--blue-scuro);
+}
+
+.alternate-A {
+  animation: alternate-A 2s steps(2, jump-none) infinite;
+  position: absolute;
+}
+@keyframes alternate-A {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.alternate-B {
+  animation: alternate-B 2s steps(2, jump-none) infinite;
+  position: absolute;
+}
+@keyframes alternate-B {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 @media screen and (min-width: 900px) {
   html {
     font-size: var(--font-adjust);
   }
   .title {
+    font-size: 1.5rem;
+  }
+  .date {
+    font-size: 5rem;
+  }
+  .text {
     font-size: 1.5rem;
   }
 }
