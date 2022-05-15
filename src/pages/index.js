@@ -5,6 +5,7 @@ import PietroWedding from "../components/PietroWedding"
 import MartaWedding from "../components/MartaWedding"
 import useOnScreen from "../hooks/useOnScreen"
 import PietroWeddingSmile from "../components/PietroWeddingSmile"
+import marta_svg from "../images/marta-w-svg.svg"
 
 const IndexPage = () => {
   const refDate = React.useRef()
@@ -17,7 +18,13 @@ const IndexPage = () => {
       <div className="container ">
         <div className="pic-container appear">
           <PietroWedding width={400} className="moving" />
-          <MartaWedding width={400} className="moving" />
+          {/* <MartaWedding width={400} className="moving" /> */}
+          <img
+            src={marta_svg}
+            alt="marta"
+            style={{ width: 400, height: 300 }}
+            className="moving"
+          />
         </div>
         <div className="title appear" style={{ "--delay": "1s" }}>
           <h1>
@@ -60,8 +67,8 @@ const IndexPage = () => {
               <p className="appear">
                 I nostri cari amici finalmente sono riusciti ad allineare i
                 pianeti, annullare le macumbe, radunare le fattucchiere piú
-                potenti di tra tutte le tribù africane conosciute fino ad ora e
-                le hanno pregate ti rendere possibile l'organizzazione di tale
+                potenti tra tutte le tribù africane conosciute fino ad ora e le
+                hanno pregate ti rendere possibile l'organizzazione di tale
                 evento!
               </p>
             </article>
